@@ -12,9 +12,10 @@ interface Props
 }
 
 const Radio = ({
+  value,
   label,
   name,
-  placeholder,
+  id,
   error,
   errorMessage,
   onChange,
@@ -23,10 +24,10 @@ const Radio = ({
     <div className="flex flex-col">
       <div className="flex items-center mb-4">
         <input
-          id={name}
+          id={id}
           type="radio"
           name={name}
-          value="USA"
+          value={value}
           className={clsx(
             "w-5 h-5 border-gray-300 focus:ring-2 focus:ring-blue-300",
             {
@@ -34,11 +35,10 @@ const Radio = ({
                 error,
             }
           )}
-          // checked={false}
           onChange={onChange}
         />
         <label
-          htmlFor={name}
+          htmlFor={id}
           className={clsx("text-sm ms-2 font-medium text-gray-900", {
             "text-red-500": error,
           })}

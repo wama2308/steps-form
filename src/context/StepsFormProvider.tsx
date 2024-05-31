@@ -2,7 +2,10 @@
 
 import { ReactNode, useReducer } from "react";
 import { StepsFormContext } from "./StepsFormContext";
-import { IStepsForm } from "@/steps-form/interfaces/steps-form";
+import type {
+  IHandleChange,
+  IStepsForm,
+} from "@/steps-form/interfaces/steps-form";
 import { stepsFormReducer } from "./stepsFormReducer";
 
 const INITIAL_STATE: IStepsForm = {
@@ -23,7 +26,7 @@ const INITIAL_STATE: IStepsForm = {
     username: "",
     password: "",
     confirm_password: "",
-    profile_type: "Business",
+    profile_type: "",
   },
   additionalPersonalInfo: {
     date_of_birth: "",
@@ -55,11 +58,16 @@ export const StepsFormProvider = ({ children }: Props) => {
     dispatch({ type: "changeStep", payload: { step } });
   };
 
+  const handleChangeAction = (data: IHandleChange) => {
+    dispatch({ type: "handleChange", payload: data });
+  };
+
   return (
     <StepsFormContext.Provider
       value={{
         stepsFormState,
         changeStepAction,
+        handleChangeAction,
       }}
     >
       {children}

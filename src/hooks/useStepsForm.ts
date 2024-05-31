@@ -2,8 +2,18 @@ import { useContext } from "react";
 import { StepsFormContext } from "@/context/StepsFormContext";
 
 export const useStepsForm = () => {
-  const { stepsFormState, changeStepAction } = useContext(StepsFormContext);
-  const { step, actionStep, accountDetails } = stepsFormState;
+  const { stepsFormState, changeStepAction, handleChangeAction } =
+    useContext(StepsFormContext);
+  const {
+    step,
+    actionStep,
+    accountDetails,
+    personalInfo,
+    addressInfo,
+    additionalPersonalInfo,
+    businessInfo,
+    preferences,
+  } = stepsFormState;
   const { profile_type } = accountDetails;
 
   return {
@@ -12,5 +22,12 @@ export const useStepsForm = () => {
     actionStep,
     changeStepAction,
     profile_type,
+    handleChangeAction,
+    personalInfo,
+    addressInfo,
+    accountDetails,
+    additionalPersonalInfo,
+    businessInfo,
+    preferences,
   };
 };

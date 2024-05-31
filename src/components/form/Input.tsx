@@ -12,6 +12,7 @@ interface Props
 }
 
 const Input = ({
+  value,
   label,
   name,
   placeholder,
@@ -32,6 +33,7 @@ const Input = ({
         {label}
       </label>
       <input
+        value={value}
         type={type}
         id={name}
         name={name}

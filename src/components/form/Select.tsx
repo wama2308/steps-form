@@ -18,6 +18,7 @@ interface Props
 }
 
 const Select = ({
+  value,
   label,
   name,
   error,
@@ -37,6 +38,7 @@ const Select = ({
         {label}
       </label>
       <select
+        value={value}
         id={name}
         name={name}
         className={clsx(

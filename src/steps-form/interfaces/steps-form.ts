@@ -44,4 +44,12 @@ export interface IStepsForm {
   additionalPersonalInfo: IAdditionalPersonalInfo | null;
   businessInfo: IBusinessInfo | null;
   preferences: IPreferences;
+  [key: string]: any;
 }
+
+export interface IHandleChange {
+  key: string;
+  value: string | boolean;
+  field: string;
+}
+

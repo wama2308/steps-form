@@ -12,9 +12,9 @@ interface Props
 }
 
 const Checkbox = ({
+  value,
   label,
   name,
-  placeholder,
   error,
   errorMessage,
   onChange,
@@ -24,8 +24,9 @@ const Checkbox = ({
       <div className="flex items-center mb-4">
         <input
           id={name}
+          name={name}
           type="checkbox"
-          value="AJA"
+          value={value}
           className={clsx(
             "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600",
             {
