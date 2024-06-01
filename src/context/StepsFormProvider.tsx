@@ -4,6 +4,7 @@ import { ReactNode, useReducer } from "react";
 import { StepsFormContext } from "./StepsFormContext";
 import type {
   IHandleChange,
+  IHandleErrors,
   IStepsForm,
 } from "@/steps-form/interfaces/steps-form";
 import { stepsFormReducer } from "./stepsFormReducer";
@@ -42,6 +43,14 @@ const INITIAL_STATE: IStepsForm = {
     how_heard: "",
     terms_agreed: false,
   },
+  validationErrors: {
+    personalInfo: {},
+    addressInfo: {},
+    accountDetails: {},
+    additionalPersonalInfo: {},
+    businessInfo: {},
+    preferences: {},
+  },
 };
 
 interface Props {
@@ -62,12 +71,17 @@ export const StepsFormProvider = ({ children }: Props) => {
     dispatch({ type: "handleChange", payload: data });
   };
 
+  const handleErrorsAction = (data: IHandleErrors) => {
+    dispatch({ type: "updateStateError", payload: data });
+  };
+  console.log("stepsFormState ", stepsFormState)
   return (
     <StepsFormContext.Provider
       value={{
         stepsFormState,
         changeStepAction,
         handleChangeAction,
+        handleErrorsAction,
       }}
     >
       {children}

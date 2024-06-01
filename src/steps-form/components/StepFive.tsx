@@ -14,6 +14,7 @@ const StepFive = () => {
         name="notifications"
         label="¿Quieres recibir notificaciones vía email?:"
         value={preferences.notifications ? "true " : "false"}
+        valueChecked={preferences.notifications}
         error={false}
         errorMessage=""
         onChange={(e) =>
@@ -35,6 +36,7 @@ const StepFive = () => {
               name="how_heard"
               id={`how_heard_${item.trim()}`}
               value={item}
+              valueChecked={preferences.how_heard}
               label={item}
               error={false}
               errorMessage=""
@@ -53,6 +55,7 @@ const StepFive = () => {
         name="terms_agreed"
         label="Estoy de acuerdo con los términos y condiciones"
         value={preferences.notifications ? "true " : "false"}
+        valueChecked={preferences.terms_agreed}
         error={false}
         errorMessage=""
         onChange={(e) =>

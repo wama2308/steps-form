@@ -53,3 +53,13 @@ export interface IHandleChange {
   field: string;
 }
 
+export interface IHandleErrors {
+  valueError:
+    | IPersonalInfo
+    | IAddressInfo
+    | IAccountDetails
+    | IBusinessInfo
+    | IPreferences;
+  fieldError: string;
+}
+

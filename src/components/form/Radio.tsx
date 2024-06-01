@@ -9,10 +9,12 @@ interface Props
   label: string;
   error: boolean;
   errorMessage: string;
+  valueChecked?: string;
 }
 
 const Radio = ({
   value,
+  valueChecked,
   label,
   name,
   id,
@@ -36,6 +38,7 @@ const Radio = ({
             }
           )}
           onChange={onChange}
+          checked={valueChecked === value}
         />
         <label
           htmlFor={id}

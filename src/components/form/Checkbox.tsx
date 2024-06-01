@@ -9,10 +9,12 @@ interface Props
   label: string;
   error: boolean;
   errorMessage: string;
+  valueChecked?: string | boolean;
 }
 
 const Checkbox = ({
   value,
+  valueChecked,
   label,
   name,
   error,
@@ -35,6 +37,7 @@ const Checkbox = ({
             }
           )}
           onChange={onChange}
+          checked={valueChecked ? true : false}
         />
         <label
           htmlFor={name}

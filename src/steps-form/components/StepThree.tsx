@@ -7,7 +7,6 @@ import { DATA_RADIOS_STEP_THREE } from "@/resources/contants";
 
 const StepThree = () => {
   const { handleChangeAction, accountDetails } = useStepsForm();
-  
 
   return (
     <ContentStepsForm>
@@ -71,6 +70,7 @@ const StepThree = () => {
               name="profile_type"
               id={`profile_type_${item.trim()}`}
               value={item}
+              valueChecked={accountDetails.profile_type}
               label={item}
               error={false}
               errorMessage=""
