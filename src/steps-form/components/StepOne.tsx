@@ -4,15 +4,21 @@ import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepOne = () => {
-  const { handleChangeAction, personalInfo } = useStepsForm();
+  const {
+    handleChangeAction,
+    personalInfo,
+    sendStep,
+    step,
+    personalInfoError,
+  } = useStepsForm();
   return (
     <ContentStepsForm>
       <Input
         label="Nombre completo"
         placeholder="Wilfredo Medina"
         value={personalInfo.full_name}
-        error={false}
-        errorMessage=""
+        error={Boolean(personalInfoError.full_name)}
+        errorMessage={personalInfoError.full_name ?? ""}
         name="full_name"
         type="text"
         onChange={(e) =>
@@ -22,14 +28,14 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Email"
         placeholder="test@gmail.com"
         value={personalInfo.email}
-        error={false}
-        errorMessage=""
+        error={Boolean(personalInfoError.email)}
+        errorMessage={personalInfoError.email ?? ""}
         name="email"
         type="email"
         onChange={(e) =>
@@ -39,14 +45,14 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Teléfono"
         placeholder="15551234567"
         value={personalInfo.phone_number}
-        error={false}
-        errorMessage=""
+        error={Boolean(personalInfoError.phone_number)}
+        errorMessage={personalInfoError.phone_number ?? ""}
         name="phone_number"
         type="number"
         onChange={(e) =>
@@ -56,7 +62,7 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </ContentStepsForm>
   );

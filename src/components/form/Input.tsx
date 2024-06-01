@@ -50,7 +50,7 @@ const Input = ({
         autoComplete="new-password"           
       />
       {error && (
-        <p className="mt-2 text-xs text-red-500">Username already taken!</p>
+        <p className="mt-2 text-xs text-red-500">{errorMessage}</p>
       )}
     </div>
   );

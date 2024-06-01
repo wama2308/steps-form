@@ -6,7 +6,13 @@ import { useStepsForm } from "@/hooks/useStepsForm";
 import { DATA_RADIOS_STEP_THREE } from "@/resources/contants";
 
 const StepThree = () => {
-  const { handleChangeAction, accountDetails } = useStepsForm();
+  const {
+    handleChangeAction,
+    accountDetails,
+    accountDetailsError,
+    sendStep,
+    step,
+  } = useStepsForm();
 
   return (
     <ContentStepsForm>
@@ -14,8 +20,8 @@ const StepThree = () => {
         label="Nombre de usuario"
         placeholder="usuariotest"
         value={accountDetails.username}
-        error={false}
-        errorMessage=""
+        error={Boolean(accountDetailsError.username)}
+        errorMessage={accountDetailsError.username ?? ""}
         name="username"
         type="text"
         onChange={(e) =>
@@ -25,15 +31,15 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Contraseña"
-        error={false}
         value={accountDetails.password}
-        errorMessage=""
+        error={Boolean(accountDetailsError.password)}
+        errorMessage={accountDetailsError.password ?? ""}
         name="password"
-        type="password"
+        type="text"
         onChange={(e) =>
           handleChangeAction({
             key: "accountDetails",
@@ -41,15 +47,15 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Confirmar contraseña"
-        error={false}
         value={accountDetails.confirm_password}
-        errorMessage=""
+        error={Boolean(accountDetailsError.confirm_password)}
+        errorMessage={accountDetailsError.confirm_password ?? ""}
         name="confirm_password"
-        type="password"
+        type="text"
         onChange={(e) =>
           handleChangeAction({
             key: "accountDetails",
@@ -57,7 +63,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <div className="flex flex-col">
         <label className="text-sm font-medium text-gray-900 mb-3">

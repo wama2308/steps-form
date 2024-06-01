@@ -1,13 +1,15 @@
 import type {
   IHandleChange,
   IHandleErrors,
+  IHandleOnblurErrors,
   IStepsForm,
 } from "@/steps-form/interfaces/steps-form";
 
 type PayloadAction =
   | { type: "changeStep"; payload: { step: number } }
   | { type: "handleChange"; payload: IHandleChange }
-  | { type: "updateStateError"; payload: IHandleErrors };
+  | { type: "updateStateError"; payload: IHandleErrors }
+  | { type: "updateStateOnblurError"; payload: IHandleOnblurErrors };
 
 export const stepsFormReducer = (
   state: IStepsForm,
@@ -33,6 +35,19 @@ export const stepsFormReducer = (
         validationErrors: {
           ...state.validationErrors,
           [fieldError]: valueError,
+        },
+      };
+    case "updateStateOnblurError":
+      const { valueErrorOnblur, fieldErrorOnblur, keyErrorOnblur } =
+        action.payload;
+      return {
+        ...state,
+        validationErrors: {
+          ...state.validationErrors,
+          [fieldErrorOnblur]: {
+            ...state.validationErrors[fieldErrorOnblur],
+            [keyErrorOnblur]: valueErrorOnblur,
+          },
         },
       };
 

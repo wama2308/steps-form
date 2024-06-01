@@ -58,9 +58,7 @@ const Select = ({
           </option>
         ))}
       </select>
-      {error && (
-        <p className="mt-2 text-xs text-red-500">Username already taken!</p>
-      )}
+      {error && <p className="mt-2 text-xs text-red-500">{errorMessage}</p>}
     </div>
   );
 };

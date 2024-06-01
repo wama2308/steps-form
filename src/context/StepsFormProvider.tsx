@@ -5,51 +5,36 @@ import { StepsFormContext } from "./StepsFormContext";
 import type {
   IHandleChange,
   IHandleErrors,
+  IHandleOnblurErrors,
   IStepsForm,
 } from "@/steps-form/interfaces/steps-form";
 import { stepsFormReducer } from "./stepsFormReducer";
+import {
+  DEFAULT_PERSONAL_INFO,
+  DEFAULT_ADDRESS_INFO,
+  DEFAULT_ACCOUNT_DETAILS,
+  DEFAULT_ADDITIONAL_PERSONAL_INFO,
+  DEFAULT_BUSINESS_INFO,
+  DEFAULT_PREFERENCES,
+  DEFAULT_PREFERENCES_ERROR,
+} from "@/resources/contants";
 
 const INITIAL_STATE: IStepsForm = {
   step: 1,
   actionStep: "",
-  personalInfo: {
-    full_name: "",
-    email: "",
-    phone_number: "",
-  },
-  addressInfo: {
-    street_address: "",
-    city: "",
-    postal_code: "",
-    country: "",
-  },
-  accountDetails: {
-    username: "",
-    password: "",
-    confirm_password: "",
-    profile_type: "",
-  },
-  additionalPersonalInfo: {
-    date_of_birth: "",
-    gender: "",
-  },
-  businessInfo: {
-    company_name: "",
-    company_size: "",
-    role_in_company: "",
-  },
-  preferences: {
-    notifications: false,
-    how_heard: "",
-    terms_agreed: false,
-  },
+  personalInfo: { ...DEFAULT_PERSONAL_INFO },
+  addressInfo: { ...DEFAULT_ADDRESS_INFO },
+  accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
+  additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
+  businessInfo: { ...DEFAULT_BUSINESS_INFO },
+  preferences: { ...DEFAULT_PREFERENCES },
   validationErrors: {
-    personalInfo: {},
-    addressInfo: {},
-    accountDetails: {},
-    additionalPersonalInfo: {},
-    businessInfo: {},
-    preferences: {},
+    personalInfo: { ...DEFAULT_PERSONAL_INFO },
+    addressInfo: { ...DEFAULT_ADDRESS_INFO },
+    accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
+    additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
+    businessInfo: { ...DEFAULT_BUSINESS_INFO },
+    preferences: { ...DEFAULT_PREFERENCES_ERROR },
   },
 };
 
@@ -74,7 +59,11 @@ export const StepsFormProvider = ({ children }: Props) => {
   const handleErrorsAction = (data: IHandleErrors) => {
     dispatch({ type: "updateStateError", payload: data });
   };
-  console.log("stepsFormState ", stepsFormState)
+
+  const handleOnblurErrorsAction = (data: IHandleOnblurErrors) => {
+    dispatch({ type: "updateStateOnblurError", payload: data });
+  };
+  console.log("stepsFormState ", stepsFormState);
   return (
     <StepsFormContext.Provider
       value={{
@@ -82,6 +71,7 @@ export const StepsFormProvider = ({ children }: Props) => {
         changeStepAction,
         handleChangeAction,
         handleErrorsAction,
+        handleOnblurErrorsAction,
       }}
     >
       {children}

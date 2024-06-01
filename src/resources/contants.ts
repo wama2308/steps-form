@@ -246,6 +246,49 @@ export const DATA_RADIOS_STEP_FIVE: string[] = [
   "Other",
 ];
 
+export const DEFAULT_PERSONAL_INFO = {
+  full_name: "",
+  email: "",
+  phone_number: "",
+};
+
+export const DEFAULT_ADDRESS_INFO = {
+  street_address: "",
+  city: "",
+  postal_code: "",
+  country: "",
+};
+
+export const DEFAULT_ACCOUNT_DETAILS = {
+  username: "",
+  password: "",
+  confirm_password: "",
+  profile_type: "",
+};
+
+export const DEFAULT_ADDITIONAL_PERSONAL_INFO = {
+  date_of_birth: "",
+  gender: "",
+};
+
+export const DEFAULT_BUSINESS_INFO = {
+  company_name: "",
+  company_size: "",
+  role_in_company: "",
+};
+
+export const DEFAULT_PREFERENCES = {
+  notifications: false,
+  how_heard: "",
+  terms_agreed: false,
+};
+
+export const DEFAULT_PREFERENCES_ERROR = {
+  notifications: "",
+  how_heard: "",
+  terms_agreed: "",
+};
+
 const API_BASE_URL = process.env.API_BASE_URL;
 
 const API_V3 = `${API_BASE_URL}/v3/`;
