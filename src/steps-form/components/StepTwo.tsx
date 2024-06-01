@@ -2,7 +2,7 @@ import React from "react";
 import Input from "@/components/form/Input";
 import Select from "@/components/form/Select";
 import ContentStepsForm from "./ContentStepsForm";
-import { COUNTRIES } from "@/contants";
+import { COUNTRIES } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepTwo = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "@/components/form/Input";
 import Select from "@/components/form/Select";
-import { GENDER } from "@/contants";
+import { GENDER } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourA = () => {

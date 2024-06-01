@@ -3,10 +3,11 @@ import Input from "@/components/form/Input";
 import Radio from "@/components/form/Radio";
 import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
+import { DATA_RADIOS_STEP_THREE } from "@/resources/contants";
 
 const StepThree = () => {
   const { handleChangeAction, accountDetails } = useStepsForm();
-  const DATA_RADIOS_STEP_THREE: string[] = ["Personal", "Business"];
+  
 
   return (
     <ContentStepsForm>

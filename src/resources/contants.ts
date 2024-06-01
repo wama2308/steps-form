@@ -236,3 +236,16 @@ export const COMPANY_SIZE: { label: string; value: string }[] = [
     value: "500+",
   },
 ];
+
+export const DATA_RADIOS_STEP_THREE: string[] = ["Personal", "Business"];
+
+export const DATA_RADIOS_STEP_FIVE: string[] = [
+  "Online Ads",
+  "Friend Referral",
+  "Social Media",
+  "Other",
+];
+
+const API_BASE_URL = process.env.API_BASE_URL;
+
+const API_V3 = `${API_BASE_URL}/v3/`;

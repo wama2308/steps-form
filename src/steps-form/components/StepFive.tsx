@@ -3,15 +3,11 @@ import Radio from "@/components/form/Radio";
 import Checkbox from "@/components/form/Checkbox";
 import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
+import { DATA_RADIOS_STEP_FIVE } from "@/resources/contants";
 
 const StepFive = () => {
   const { handleChangeAction, preferences } = useStepsForm();
-  const DATA_RADIOS_STEP_FIVE: string[] = [
-    "Online Ads",
-    "Friend Referral",
-    "Social Media",
-    "Other",
-  ];
+
   return (
     <ContentStepsForm>
       <Checkbox
