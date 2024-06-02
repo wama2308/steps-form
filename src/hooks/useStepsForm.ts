@@ -7,6 +7,8 @@ import {
   IBusinessInfo,
   IPreferences,
   type IPersonalInfo,
+  ValidationRules,
+  TDataSteps,
 } from "@/steps-form/interfaces/steps-form";
 import { hasErrors, validateSteps } from "@/utils";
 import {
@@ -48,121 +50,85 @@ export const useStepsForm = () => {
   } = validationErrors;
 
   const sendStep = (step: number, data?: Record<string, string>) => {
-    let errors: Partial<
-      | IPersonalInfo
-      | IAddressInfo
-      | IAccountDetails
-      | IAdditionalPersonalInfo
-      | IBusinessInfo
-      | IPreferences
-    >;
+    let errors: TDataSteps;
+
+    const handleValidationAndErrors = (
+      stepData: TDataSteps | Record<string, string>,
+      schema: Record<string, ValidationRules>,
+      fieldError: string,
+      dataModified?: Record<string, string>
+    ) => {
+      errors = validateSteps(stepData, schema);
+      if (dataModified) {
+        handleOnblurErrorsAction({
+          valueErrorOnblur: getKeyValueDataObject(errors).value,
+          fieldErrorOnblur: fieldError,
+          keyErrorOnblur: getKeyValueDataObject(dataModified).key,
+        });
+      } else {
+        handleErrorsAction({
+          valueError: errors,
+          fieldError,
+        });
+      }
+      return errors;
+    };
+
     switch (step) {
       case 1:
-        errors = validateSteps<IPersonalInfo>(
+        errors = handleValidationAndErrors(
           data ? data : personalInfo,
-          validateSchemaPersonalInfo
+          validateSchemaPersonalInfo,
+          "personalInfo",
+          data
         );
-        if (data) {
-          handleOnblurErrorsAction({
-            valueErrorOnblur: getKeyValueDataObject(errors).value,
-            fieldErrorOnblur: "personalInfo",
-            keyErrorOnblur: getKeyValueDataObject(data).key,
-          });
-        } else {
-          handleErrorsAction({
-            valueError: errors,
-            fieldError: "personalInfo",
-          });
-        }
-
         if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);
         }
         break;
       case 2:
-        errors = validateSteps<IAddressInfo>(
+        errors = handleValidationAndErrors(
           data ? data : addressInfo,
-          validateSchemaAddressInfo
+          validateSchemaAddressInfo,
+          "addressInfo",
+          data
         );
-        if (data) {
-          handleOnblurErrorsAction({
-            valueErrorOnblur: getKeyValueDataObject(errors).value,
-            fieldErrorOnblur: "addressInfo",
-            keyErrorOnblur: getKeyValueDataObject(data).key,
-          });
-        } else {
-          handleErrorsAction({
-            valueError: errors,
-            fieldError: "addressInfo",
-          });
-        }
-
         if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);
         }
         break;
       case 3:
-        let dataModified =
+        const dataModified =
           data &&
           getKeyValueDataObject(data).key === "confirm_password" &&
           accountDetails.password
             ? { ...data, password: accountDetails.password }
             : data;
-        errors = validateSteps<IAccountDetails>(
+        errors = handleValidationAndErrors(
           dataModified ? dataModified : accountDetails,
-          validateSchemaAccountDetails
+          validateSchemaAccountDetails,
+          "accountDetails",
+          dataModified
         );
-        if (dataModified) {
-          handleOnblurErrorsAction({
-            valueErrorOnblur: getKeyValueDataObject(errors).value,
-            fieldErrorOnblur: "accountDetails",
-            keyErrorOnblur: getKeyValueDataObject(dataModified).key,
-          });
-        } else {
-          handleErrorsAction({
-            valueError: errors,
-            fieldError: "accountDetails",
-          });
-        }
         if (!hasErrors(errors) && !dataModified) {
           changeStepAction(step + 1);
         }
         break;
       case 4:
         if (profile_type === "Personal") {
-          errors = validateSteps<IAdditionalPersonalInfo>(
+          errors = handleValidationAndErrors(
             data ? data : additionalPersonalInfo!,
-            validateSchemaAdditionalPersonalInfo
+            validateSchemaAdditionalPersonalInfo,
+            "additionalPersonalInfo",
+            data
           );
-          if (data) {
-            handleOnblurErrorsAction({
-              valueErrorOnblur: getKeyValueDataObject(errors).value,
-              fieldErrorOnblur: "additionalPersonalInfo",
-              keyErrorOnblur: getKeyValueDataObject(data).key,
-            });
-          } else {
-            handleErrorsAction({
-              valueError: errors,
-              fieldError: "additionalPersonalInfo",
-            });
-          }
         } else {
-          errors = validateSteps<IBusinessInfo>(
+          errors = handleValidationAndErrors(
             data ? data : businessInfo!,
-            validateSchemaBussinesInfo
+            validateSchemaBussinesInfo,
+            "businessInfo",
+            data
           );
-          if (data) {
-            handleOnblurErrorsAction({
-              valueErrorOnblur: getKeyValueDataObject(errors).value,
-              fieldErrorOnblur: "businessInfo",
-              keyErrorOnblur: getKeyValueDataObject(data).key,
-            });
-          } else {
-            handleErrorsAction({
-              valueError: errors,
-              fieldError: "businessInfo",
-            });
-          }
         }
         if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);

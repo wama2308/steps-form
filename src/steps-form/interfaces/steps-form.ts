@@ -122,3 +122,12 @@ export type ValidationRules = {
 export type SectionState<T> = {
   [K in keyof T]: string;
 };
+
+export type TDataSteps = Partial<
+  | IPersonalInfo
+  | IAddressInfo
+  | IAccountDetails
+  | IAdditionalPersonalInfo
+  | IBusinessInfo
+  | IPreferences
+>;
