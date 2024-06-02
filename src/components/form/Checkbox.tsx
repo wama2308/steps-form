@@ -32,7 +32,7 @@ const Checkbox = ({
           className={clsx(
             "w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600",
             {
-              "border border-red-600 focus:ring-red-700 appearance-none rounded-full checked:bg-red-600":
+              "border border-red-600 focus:ring-red-700 appearance-none checked:bg-red-600 checked:border-white":
                 error,
             }
           )}
@@ -49,7 +49,7 @@ const Checkbox = ({
         </label>
       </div>
       {error && (
-        <p className="mt-2 text-xs text-red-500">Username already taken!</p>
+        <p className="text-xs text-red-500">{errorMessage}</p>
       )}
     </div>
   );

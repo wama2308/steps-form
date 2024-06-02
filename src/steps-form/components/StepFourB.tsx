@@ -5,14 +5,14 @@ import { COMPANY_SIZE } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourB = () => {
-  const { handleChangeAction, businessInfo } = useStepsForm();
+  const { handleChangeAction, businessInfo, businessInfoError } = useStepsForm();
   return (
     <div>
       <Input
         label="Nombre de empresa"
-        error={false}
         value={businessInfo?.company_name}
-        errorMessage=""
+        error={Boolean(businessInfoError.company_name)}
+        errorMessage={businessInfoError.company_name ?? ""}
         name="company_name"
         type="text"
         onChange={(e) =>
@@ -28,8 +28,8 @@ const StepFourB = () => {
         label="Tamaño de la empresa"
         name="company_size"
         value={businessInfo?.company_size}
-        error={false}
-        errorMessage=""
+        error={Boolean(businessInfoError.company_size)}
+        errorMessage={businessInfoError.company_size ?? ""}
         options={COMPANY_SIZE}
         onChange={(e) =>
           handleChangeAction({
@@ -43,8 +43,8 @@ const StepFourB = () => {
       <Input
         label="Rol en la empresa"
         value={businessInfo?.role_in_company}
-        error={false}
-        errorMessage=""
+        error={Boolean(businessInfoError.role_in_company)}
+        errorMessage={businessInfoError.role_in_company ?? ""}
         name="role_in_company"
         type="text"
         onChange={(e) =>

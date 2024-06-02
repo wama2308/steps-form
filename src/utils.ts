@@ -17,7 +17,7 @@ export const validateSteps = <T>(
           if (fieldErrors.hasOwnProperty(type)) {
             switch (type) {
               case "required":
-                if (sectionState[field] === "") {
+                if (!sectionState[field]) {
                   errors[field] = fieldErrors[type] as string;
                 }
                 break;
@@ -53,15 +53,24 @@ export const validateSteps = <T>(
                   errors[field] = fieldErrors[type] as string;
                 }
                 break;
+              case "formatFullName":
+                if (
+                  sectionState[field] &&
+                  !fullNameRegex.test(sectionState[field] as string)
+                ) {
+                  errors[field] = fieldErrors[type] as string;
+                }
+                break;
+              case "formatUserName":
+                if (
+                  sectionState[field] &&
+                  !usernameRegex.test(sectionState[field] as string)
+                ) {
+                  errors[field] = fieldErrors[type] as string;
+                }
+                break;
               case "comparePassword":
                 const compareField = fieldErrors[type];
-                console.log(10, fieldErrors)
-                console.log(0, type)
-                console.log(1, fieldErrors[type])
-                console.log(2, sectionState[field])
-                console.log(3, sectionState)
-                console.log(4, sectionState[compareField as keyof T])
-                
                 if (
                   sectionState[field] &&
                   sectionState[compareField as keyof T] &&
@@ -112,4 +121,7 @@ export const hasErrors = (errors: Record<string, string>): boolean => {
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^\+?[0-9\s\-\(\)]{9,15}$/;
 const postalCodeRegex = /^[A-Za-z0-9\s\-]{3,10}$/;
-const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+const fullNameRegex = /^\w+\s+\w+.*$/;
+const usernameRegex = /.{3,}/;
+const passwordRegex =
+  /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s])[A-Za-z\d\S]{8,}$/;

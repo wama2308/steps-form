@@ -8,7 +8,6 @@ interface Props
   > {
   label: string;
   error: boolean;
-  errorMessage: string;
   valueChecked?: string;
 }
 
@@ -19,7 +18,6 @@ const Radio = ({
   name,
   id,
   error,
-  errorMessage,
   onChange,
 }: Props) => {
   return (
@@ -33,7 +31,7 @@ const Radio = ({
           className={clsx(
             "w-5 h-5 border-gray-300 focus:ring-2 focus:ring-blue-300",
             {
-              "border border-red-600 focus:ring-red-700 appearance-none rounded-full checked:bg-red-600":
+              "border border-red-600 focus:ring-red-700 appearance-none rounded-full checked:bg-red-600 checked:border-white":
                 error,
             }
           )}
@@ -49,9 +47,6 @@ const Radio = ({
           {label}
         </label>
       </div>
-      {error && (
-        <p className="mt-2 text-xs text-red-500">Username already taken!</p>
-      )}
     </div>
   );
 };

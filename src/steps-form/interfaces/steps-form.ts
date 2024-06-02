@@ -18,21 +18,22 @@ export interface IAccountDetails {
   profile_type: string;
 }
 
-interface IAdditionalPersonalInfo {
+export interface IAdditionalPersonalInfo {
   date_of_birth: string;
   gender: string;
 }
 
-interface IBusinessInfo {
+export interface IBusinessInfo {
   company_name: string;
   company_size: string;
   role_in_company: string;
 }
 
-interface IPreferences {
+export interface IPreferences {
   notifications: boolean;
   how_heard: string;
   terms_agreed: boolean;
+  [key: string]: any;
 }
 
 export interface IStepsForm {
@@ -59,6 +60,7 @@ export interface IHandleErrors {
     | Partial<IPersonalInfo>
     | Partial<IAddressInfo>
     | Partial<IAccountDetails>
+    | Partial<IAdditionalPersonalInfo>
     | Partial<IBusinessInfo>
     | Partial<IPreferences>;
   fieldError: string;
@@ -111,8 +113,9 @@ export type ValidationRules = {
   formatPhone?: string;
   formatPostalCode?: string;
   formatPassword?: string;
-  comparePassword?: string;
-  // Agregar cualquier otra regla de validación necesaria
+  formatFullName?: string;
+  formatUserName?: string;
+  comparePassword?: string;  
 };
 
 export type SectionState<T> = {

@@ -6,7 +6,7 @@ import { useStepsForm } from "@/hooks/useStepsForm";
 import { DATA_RADIOS_STEP_FIVE } from "@/resources/contants";
 
 const StepFive = () => {
-  const { handleChangeAction, preferences } = useStepsForm();
+  const { handleChangeAction, preferences, preferencesError } = useStepsForm();
 
   return (
     <ContentStepsForm>
@@ -38,8 +38,7 @@ const StepFive = () => {
               value={item}
               valueChecked={preferences.how_heard}
               label={item}
-              error={false}
-              errorMessage=""
+              error={Boolean(preferencesError.how_heard)}
               onChange={(e) =>
                 handleChangeAction({
                   key: "preferences",
@@ -50,14 +49,19 @@ const StepFive = () => {
             />
           ))}
         </>
+        {Boolean(preferencesError.how_heard) && (
+          <p className="mb-3 text-xs text-red-500">
+            {preferencesError.how_heard ?? ""}
+          </p>
+        )}
       </div>
       <Checkbox
         name="terms_agreed"
         label="Estoy de acuerdo con los términos y condiciones"
         value={preferences.notifications ? "true " : "false"}
         valueChecked={preferences.terms_agreed}
-        error={false}
-        errorMessage=""
+        error={Boolean(preferencesError.terms_agreed)}
+        errorMessage={preferencesError.terms_agreed ?? ""}
         onChange={(e) =>
           handleChangeAction({
             key: "preferences",

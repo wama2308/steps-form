@@ -28,7 +28,7 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Email"
@@ -45,7 +45,7 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Teléfono"
@@ -62,7 +62,7 @@ const StepOne = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </ContentStepsForm>
   );

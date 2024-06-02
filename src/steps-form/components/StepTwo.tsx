@@ -25,7 +25,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Ciudad"
@@ -42,7 +42,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Código postal"
@@ -59,7 +59,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Select
         label="País"
@@ -75,7 +75,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </ContentStepsForm>
   );

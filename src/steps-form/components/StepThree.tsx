@@ -1,4 +1,5 @@
 import React from "react";
+import clsx from "clsx";
 import Input from "@/components/form/Input";
 import Radio from "@/components/form/Radio";
 import ContentStepsForm from "./ContentStepsForm";
@@ -31,7 +32,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Contraseña"
@@ -47,7 +48,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Confirmar contraseña"
@@ -63,10 +64,14 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <div className="flex flex-col">
-        <label className="text-sm font-medium text-gray-900 mb-3">
+        <label
+          className={clsx("text-sm font-medium text-gray-900 mb-3", {
+            "text-red-500": Boolean(accountDetailsError.profile_type),
+          })}
+        >
           Perfil de usuario
         </label>
         <>
@@ -78,8 +83,7 @@ const StepThree = () => {
               value={item}
               valueChecked={accountDetails.profile_type}
               label={item}
-              error={false}
-              errorMessage=""
+              error={Boolean(accountDetailsError.profile_type)}
               onChange={(e) =>
                 handleChangeAction({
                   key: "accountDetails",
@@ -90,6 +94,11 @@ const StepThree = () => {
             />
           ))}
         </>
+        {Boolean(accountDetailsError.profile_type) && (
+          <p className="text-xs text-red-500">
+            {accountDetailsError.profile_type ?? ""}
+          </p>
+        )}
       </div>
     </ContentStepsForm>
   );

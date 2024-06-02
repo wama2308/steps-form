@@ -5,14 +5,14 @@ import { GENDER } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourA = () => {
-  const { handleChangeAction, additionalPersonalInfo } = useStepsForm();
+  const { handleChangeAction, additionalPersonalInfo, additionalPersonalInfoError } = useStepsForm();
   return (
     <div>
       <Input
         label="Fecha de nacimiento"
-        error={false}
         value={additionalPersonalInfo?.date_of_birth}
-        errorMessage=""
+        error={Boolean(additionalPersonalInfoError.date_of_birth)}
+        errorMessage={additionalPersonalInfoError.date_of_birth ?? ""}
         name="date_of_birth"
         type="date"
         onChange={(e) =>
@@ -28,8 +28,8 @@ const StepFourA = () => {
         label="Género"
         name="gender"
         value={additionalPersonalInfo?.gender}
-        error={false}
-        errorMessage=""
+        error={Boolean(additionalPersonalInfoError.gender)}
+        errorMessage={additionalPersonalInfoError.gender ?? ""}
         options={GENDER}
         onChange={(e) =>
           handleChangeAction({
