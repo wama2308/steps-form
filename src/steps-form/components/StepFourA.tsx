@@ -5,7 +5,11 @@ import { GENDER } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourA = () => {
-  const { handleChangeAction, additionalPersonalInfo, additionalPersonalInfoError } = useStepsForm();
+  const {
+    handleChangeAction,
+    additionalPersonalInfo,
+    additionalPersonalInfoError,
+  } = useStepsForm();
   return (
     <div>
       <Input
@@ -20,6 +24,7 @@ const StepFourA = () => {
             key: "additionalPersonalInfo",
             value: e.target.value,
             field: e.target.name,
+            type: "date",
           })
         }
         // onBlur={handleInputBlur}
@@ -36,6 +41,7 @@ const StepFourA = () => {
             key: "additionalPersonalInfo",
             value: e.target.value,
             field: e.target.name,
+            type: "select",
           })
         }
         // onBlur={handleInputBlur}

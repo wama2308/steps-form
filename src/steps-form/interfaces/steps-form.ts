@@ -53,6 +53,7 @@ export interface IHandleChange {
   key: string;
   value: string | boolean;
   field: string;
+  type?: "select" | "radio" | "checkbox" | "text" | "date" | "";
 }
 
 export interface IHandleErrors {
@@ -115,7 +116,7 @@ export type ValidationRules = {
   formatPassword?: string;
   formatFullName?: string;
   formatUserName?: string;
-  comparePassword?: string;  
+  comparePassword?: string;
 };
 
 export type SectionState<T> = {

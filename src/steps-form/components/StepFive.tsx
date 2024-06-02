@@ -44,6 +44,7 @@ const StepFive = () => {
                   key: "preferences",
                   value: item,
                   field: e.target.name,
+                  type: "radio",
                 })
               }
             />
@@ -67,6 +68,7 @@ const StepFive = () => {
             key: "preferences",
             value: e.target.checked,
             field: e.target.name,
+            type: "checkbox",
           })
         }
       />

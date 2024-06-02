@@ -54,6 +54,20 @@ export const StepsFormProvider = ({ children }: Props) => {
 
   const handleChangeAction = (data: IHandleChange) => {
     dispatch({ type: "handleChange", payload: data });
+    if (
+      data.value &&
+      data.type &&
+      ["select", "radio", "checkbox", "date"].includes(data.type)
+    ) {
+      dispatch({
+        type: "updateStateOnblurError",
+        payload: {
+          valueErrorOnblur: "",
+          fieldErrorOnblur: data.key,
+          keyErrorOnblur: data.field,
+        },
+      });
+    }
   };
 
   const handleErrorsAction = (data: IHandleErrors) => {

@@ -5,7 +5,8 @@ import { COMPANY_SIZE } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourB = () => {
-  const { handleChangeAction, businessInfo, businessInfoError } = useStepsForm();
+  const { handleChangeAction, businessInfo, businessInfoError } =
+    useStepsForm();
   return (
     <div>
       <Input
@@ -36,6 +37,7 @@ const StepFourB = () => {
             key: "businessInfo",
             value: e.target.value,
             field: e.target.name,
+            type: "select",
           })
         }
         // onBlur={handleInputBlur}

@@ -68,13 +68,15 @@ const StepTwo = () => {
         error={Boolean(addressInfoError.country)}
         errorMessage={addressInfoError.country ?? ""}
         options={COUNTRIES}
-        onChange={(e) =>
+        onChange={(e) => {
+          console.log(e.target.type)
           handleChangeAction({
             key: "addressInfo",
             value: e.target.value,
             field: e.target.name,
-          })
-        }
+            type: "select",
+          });
+        }}
         // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </ContentStepsForm>

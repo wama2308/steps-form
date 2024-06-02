@@ -89,6 +89,7 @@ const StepThree = () => {
                   key: "accountDetails",
                   value: item,
                   field: e.target.name,
+                  type: "radio",
                 })
               }
             />
