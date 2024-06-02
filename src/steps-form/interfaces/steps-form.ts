@@ -39,6 +39,7 @@ export interface IPreferences {
 export interface IStepsForm {
   step: number;
   actionStep: "next" | "back" | "";
+  loading: boolean;
   personalInfo: IPersonalInfo;
   addressInfo: IAddressInfo;
   accountDetails: IAccountDetails;
@@ -131,3 +132,28 @@ export type TDataSteps = Partial<
   | IBusinessInfo
   | IPreferences
 >;
+
+export interface Response {
+  status: string;
+  message: string;
+  data: DataSend;
+}
+
+export interface DataSend {
+  full_name: string;
+  email: string;
+  phone_number: string;
+  street_address: string;
+  city: string;
+  postal_code: string;
+  country: string;
+  username: string;
+  password: string;
+  confirm_password: string;
+  profile_type: string;
+  personal_info: IAdditionalPersonalInfo | null;
+  business_info: IBusinessInfo | null;
+  notifications: boolean;
+  how_heard: string;
+  terms_agreed: boolean;
+}

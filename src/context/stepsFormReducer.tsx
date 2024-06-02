@@ -9,6 +9,7 @@ type PayloadAction =
   | { type: "changeStep"; payload: { step: number } }
   | { type: "handleChange"; payload: IHandleChange }
   | { type: "updateStateError"; payload: IHandleErrors }
+  | { type: "updateLoading" }
   | { type: "updateStateOnblurError"; payload: IHandleOnblurErrors };
 
 export const stepsFormReducer = (
@@ -49,6 +50,11 @@ export const stepsFormReducer = (
             [keyErrorOnblur]: valueErrorOnblur,
           },
         },
+      };
+    case "updateLoading":
+      return {
+        ...state,
+        loading: !state.loading,
       };
 
     default:

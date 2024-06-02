@@ -7,6 +7,7 @@ export type StepsFormContextProps = {
   handleChangeAction: (data: IHandleChange) => void;
   handleErrorsAction: (data: IHandleErrors) => void;
   handleOnblurErrorsAction: (data: IHandleOnblurErrors) => void;
+  setLoadingAction: () => void;
 };
 
 export const StepsFormContext = createContext<StepsFormContextProps>(

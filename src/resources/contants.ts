@@ -291,4 +291,4 @@ export const DEFAULT_PREFERENCES_ERROR = {
 
 const API_BASE_URL = process.env.API_BASE_URL;
 
-const API_V3 = `${API_BASE_URL}/v3/`;
+export const API_V3 = `${API_BASE_URL}/v3`;

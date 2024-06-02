@@ -22,6 +22,7 @@ import {
 const INITIAL_STATE: IStepsForm = {
   step: 1,
   actionStep: "",
+  loading: false,
   personalInfo: { ...DEFAULT_PERSONAL_INFO },
   addressInfo: { ...DEFAULT_ADDRESS_INFO },
   accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
@@ -77,7 +78,11 @@ export const StepsFormProvider = ({ children }: Props) => {
   const handleOnblurErrorsAction = (data: IHandleOnblurErrors) => {
     dispatch({ type: "updateStateOnblurError", payload: data });
   };
-  console.log("stepsFormState ", stepsFormState);
+
+  const setLoadingAction = () => {
+    dispatch({ type: "updateLoading" });
+  };
+  // console.log("stepsFormState ", stepsFormState);
   return (
     <StepsFormContext.Provider
       value={{
@@ -86,6 +91,7 @@ export const StepsFormProvider = ({ children }: Props) => {
         handleChangeAction,
         handleErrorsAction,
         handleOnblurErrorsAction,
+        setLoadingAction,
       }}
     >
       {children}

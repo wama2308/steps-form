@@ -1,12 +1,7 @@
 import { useContext } from "react";
 import { StepsFormContext } from "@/context/StepsFormContext";
 import {
-  IAccountDetails,
-  IAdditionalPersonalInfo,
-  IAddressInfo,
-  IBusinessInfo,
   IPreferences,
-  type IPersonalInfo,
   ValidationRules,
   TDataSteps,
 } from "@/steps-form/interfaces/steps-form";
@@ -19,6 +14,11 @@ import {
   validateSchemaPersonalInfo,
   validateSchemaPreferences,
 } from "@/resources/schemasValidator";
+import { registerProfile } from "@/servers";
+import {
+  registerProfileBusinessUrl,
+  registerProfilePersonalUrl,
+} from "@/resources/urls";
 
 export const useStepsForm = () => {
   const {
@@ -27,6 +27,7 @@ export const useStepsForm = () => {
     handleChangeAction,
     handleErrorsAction,
     handleOnblurErrorsAction,
+    setLoadingAction,
   } = useContext(StepsFormContext);
   const {
     step,
@@ -38,6 +39,7 @@ export const useStepsForm = () => {
     businessInfo,
     preferences,
     validationErrors,
+    loading,
   } = stepsFormState;
   const { profile_type } = accountDetails;
   const {
@@ -147,13 +149,39 @@ export const useStepsForm = () => {
           fieldError: "preferences",
         });
         if (!hasErrors(errors)) {
-          console.log("GUARDAR");
+          sendData();
         }
         break;
       default:
         console.error("Step no válido");
         return;
     }
+  };
+
+  const sendData = () => {
+    setLoadingAction();
+    const dataSend = {
+      ...personalInfo,
+      ...addressInfo,
+      ...accountDetails,
+      personal_info:
+        profile_type === "Personal" ? additionalPersonalInfo : null,
+      business_info: profile_type === "Business" ? businessInfo : null,
+      ...preferences,
+    };
+    const urlSend =
+      profile_type === "Personal"
+        ? registerProfilePersonalUrl
+        : registerProfileBusinessUrl;
+
+    registerProfile(urlSend, dataSend)
+      .then(() => {})
+      .catch((error: Error) => {
+        console.error("Error:", error);
+      })
+      .finally(() => {
+        setLoadingAction();
+      });
   };
 
   const getKeyValueDataObject = (
@@ -188,5 +216,6 @@ export const useStepsForm = () => {
     additionalPersonalInfoError,
     businessInfoError,
     preferencesError,
+    loading,
   };
 };
