@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { StepsFormContext } from "@/context/StepsFormContext";
 import {
   IPreferences,
@@ -196,6 +196,51 @@ export const useStepsForm = () => {
     };
   };
 
+  const disabledAction = useCallback(
+    (step: number) => {
+      if (step === 1) {
+        return hasErrors(
+          validateSteps(personalInfo, validateSchemaPersonalInfo)
+        );
+      }
+      if (step === 2) {
+        return hasErrors(validateSteps(addressInfo, validateSchemaAddressInfo));
+      }
+      if (step === 3) {
+        return hasErrors(
+          validateSteps(accountDetails, validateSchemaAccountDetails)
+        );
+      }
+      if (step === 4) {
+        if (profile_type === "Personal") {
+          return hasErrors(
+            validateSteps(
+              additionalPersonalInfo!,
+              validateSchemaAdditionalPersonalInfo
+            )
+          );
+        } else {
+          return hasErrors(
+            validateSteps(businessInfo!, validateSchemaBussinesInfo)
+          );
+        }
+      }
+      if (step === 5) {
+        return hasErrors(
+          validateSteps(
+            {
+              how_heard: preferences.how_heard,
+              terms_agreed: preferences.terms_agreed ? "true" : "",
+            },
+            validateSchemaPreferences
+          )
+        );
+      }
+      return false;
+    },
+    [accountDetails, additionalPersonalInfo, addressInfo, businessInfo, personalInfo, preferences.how_heard, preferences.terms_agreed, profile_type]
+  );
+
   return {
     data: stepsFormState,
     step,
@@ -217,5 +262,6 @@ export const useStepsForm = () => {
     businessInfoError,
     preferencesError,
     loading,
+    disabledAction
   };
 };

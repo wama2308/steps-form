@@ -76,7 +76,9 @@ export const validateSteps = <T>(
                   sectionState[compareField as keyof T] &&
                   sectionState[field] !== sectionState[compareField as keyof T]
                 ) {
-                  errors[field] = `La confirmación no coincide con la contraseña`;
+                  errors[
+                    field
+                  ] = `La confirmación no coincide con la contraseña`;
                 }
                 break;
 
@@ -98,20 +100,6 @@ export const validateSteps = <T>(
   }
 
   return errors;
-};
-
-export const compareObjects = (
-  obj1: Record<string, string>,
-  obj2: Record<string, string>
-): boolean => {
-  for (const key in obj1) {
-    if (obj1.hasOwnProperty(key)) {
-      if (obj1[key] !== obj2[key]) {
-        return true;
-      }
-    }
-  }
-  return false;
 };
 
 export const hasErrors = (errors: Record<string, string>): boolean => {
