@@ -23,7 +23,6 @@ export const stepsFormReducer = (
         actionStep: state.step < action.payload.step ? "next" : "back",
       };
     case "handleChange":
-      // console.log("action.payload ", action.payload)
       const { key, value, field } = action.payload;
       return {
         ...state,

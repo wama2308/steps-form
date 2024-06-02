@@ -76,7 +76,7 @@ export const validateSteps = <T>(
                   sectionState[compareField as keyof T] &&
                   sectionState[field] !== sectionState[compareField as keyof T]
                 ) {
-                  errors[field] = `El valor no coincide con ${compareField}`;
+                  errors[field] = `La confirmación no coincide con la contraseña`;
                 }
                 break;
 

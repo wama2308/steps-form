@@ -9,6 +9,8 @@ const StepFourA = () => {
     handleChangeAction,
     additionalPersonalInfo,
     additionalPersonalInfoError,
+    sendStep,
+    step,
   } = useStepsForm();
   return (
     <div>
@@ -27,7 +29,7 @@ const StepFourA = () => {
             type: "date",
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Select
         label="Género"
@@ -44,7 +46,7 @@ const StepFourA = () => {
             type: "select",
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </div>
   );

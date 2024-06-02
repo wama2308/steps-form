@@ -32,7 +32,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Contraseña"
@@ -48,7 +48,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Confirmar contraseña"
@@ -64,7 +64,7 @@ const StepThree = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <div className="flex flex-col">
         <label
@@ -90,6 +90,11 @@ const StepThree = () => {
                   value: item,
                   field: e.target.name,
                   type: "radio",
+                })
+              }
+              onBlur={(e) =>
+                sendStep(step, {
+                  [e.target.name]: e.target.checked ? "true" : "",
                 })
               }
             />

@@ -19,6 +19,7 @@ const Radio = ({
   id,
   error,
   onChange,
+  onBlur,
 }: Props) => {
   return (
     <div className="flex flex-col">
@@ -36,6 +37,7 @@ const Radio = ({
             }
           )}
           onChange={onChange}
+          onBlur={onBlur}
           checked={valueChecked === value}
         />
         <label

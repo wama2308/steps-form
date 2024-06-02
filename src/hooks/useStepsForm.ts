@@ -59,66 +59,112 @@ export const useStepsForm = () => {
     switch (step) {
       case 1:
         errors = validateSteps<IPersonalInfo>(
-          personalInfo,
+          data ? data : personalInfo,
           validateSchemaPersonalInfo
         );
-        handleErrorsAction({
-          valueError: errors,
-          fieldError: "personalInfo",
-        });
+        if (data) {
+          handleOnblurErrorsAction({
+            valueErrorOnblur: getKeyValueDataObject(errors).value,
+            fieldErrorOnblur: "personalInfo",
+            keyErrorOnblur: getKeyValueDataObject(data).key,
+          });
+        } else {
+          handleErrorsAction({
+            valueError: errors,
+            fieldError: "personalInfo",
+          });
+        }
 
-        if (!hasErrors(errors)) {
+        if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);
         }
         break;
       case 2:
         errors = validateSteps<IAddressInfo>(
-          addressInfo,
+          data ? data : addressInfo,
           validateSchemaAddressInfo
         );
-        handleErrorsAction({
-          valueError: errors,
-          fieldError: "addressInfo",
-        });
+        if (data) {
+          handleOnblurErrorsAction({
+            valueErrorOnblur: getKeyValueDataObject(errors).value,
+            fieldErrorOnblur: "addressInfo",
+            keyErrorOnblur: getKeyValueDataObject(data).key,
+          });
+        } else {
+          handleErrorsAction({
+            valueError: errors,
+            fieldError: "addressInfo",
+          });
+        }
 
-        if (!hasErrors(errors)) {
+        if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);
         }
         break;
       case 3:
+        let dataModified =
+          data &&
+          getKeyValueDataObject(data).key === "confirm_password" &&
+          accountDetails.password
+            ? { ...data, password: accountDetails.password }
+            : data;
         errors = validateSteps<IAccountDetails>(
-          accountDetails,
+          dataModified ? dataModified : accountDetails,
           validateSchemaAccountDetails
         );
-        handleErrorsAction({
-          valueError: errors,
-          fieldError: "accountDetails",
-        });
-        if (!hasErrors(errors)) {
+        if (dataModified) {
+          handleOnblurErrorsAction({
+            valueErrorOnblur: getKeyValueDataObject(errors).value,
+            fieldErrorOnblur: "accountDetails",
+            keyErrorOnblur: getKeyValueDataObject(dataModified).key,
+          });
+        } else {
+          handleErrorsAction({
+            valueError: errors,
+            fieldError: "accountDetails",
+          });
+        }
+        if (!hasErrors(errors) && !dataModified) {
           changeStepAction(step + 1);
         }
         break;
       case 4:
         if (profile_type === "Personal") {
           errors = validateSteps<IAdditionalPersonalInfo>(
-            additionalPersonalInfo!,
+            data ? data : additionalPersonalInfo!,
             validateSchemaAdditionalPersonalInfo
           );
-          handleErrorsAction({
-            valueError: errors,
-            fieldError: "additionalPersonalInfo",
-          });
+          if (data) {
+            handleOnblurErrorsAction({
+              valueErrorOnblur: getKeyValueDataObject(errors).value,
+              fieldErrorOnblur: "additionalPersonalInfo",
+              keyErrorOnblur: getKeyValueDataObject(data).key,
+            });
+          } else {
+            handleErrorsAction({
+              valueError: errors,
+              fieldError: "additionalPersonalInfo",
+            });
+          }
         } else {
           errors = validateSteps<IBusinessInfo>(
-            businessInfo!,
+            data ? data : businessInfo!,
             validateSchemaBussinesInfo
           );
-          handleErrorsAction({
-            valueError: errors,
-            fieldError: "businessInfo",
-          });
+          if (data) {
+            handleOnblurErrorsAction({
+              valueErrorOnblur: getKeyValueDataObject(errors).value,
+              fieldErrorOnblur: "businessInfo",
+              keyErrorOnblur: getKeyValueDataObject(data).key,
+            });
+          } else {
+            handleErrorsAction({
+              valueError: errors,
+              fieldError: "businessInfo",
+            });
+          }
         }
-        if (!hasErrors(errors)) {
+        if (!hasErrors(errors) && !data) {
           changeStepAction(step + 1);
         }
         break;

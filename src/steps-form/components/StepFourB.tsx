@@ -5,8 +5,13 @@ import { COMPANY_SIZE } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
 const StepFourB = () => {
-  const { handleChangeAction, businessInfo, businessInfoError } =
-    useStepsForm();
+  const {
+    handleChangeAction,
+    businessInfo,
+    businessInfoError,
+    sendStep,
+    step,
+  } = useStepsForm();
   return (
     <div>
       <Input
@@ -23,7 +28,7 @@ const StepFourB = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Select
         label="Tamaño de la empresa"
@@ -40,7 +45,7 @@ const StepFourB = () => {
             type: "select",
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Rol en la empresa"
@@ -56,7 +61,7 @@ const StepFourB = () => {
             field: e.target.name,
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </div>
   );

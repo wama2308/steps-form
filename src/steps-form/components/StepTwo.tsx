@@ -25,7 +25,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Ciudad"
@@ -42,7 +42,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Input
         label="Código postal"
@@ -59,7 +59,7 @@ const StepTwo = () => {
             field: e.target.name,
           })
         }
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Select
         label="País"
@@ -69,7 +69,6 @@ const StepTwo = () => {
         errorMessage={addressInfoError.country ?? ""}
         options={COUNTRIES}
         onChange={(e) => {
-          console.log(e.target.type)
           handleChangeAction({
             key: "addressInfo",
             value: e.target.value,
@@ -77,7 +76,7 @@ const StepTwo = () => {
             type: "select",
           });
         }}
-        // onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </ContentStepsForm>
   );
