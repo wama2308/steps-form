@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { IHandleChange, IHandleErrors, IHandleOnblurErrors, IStepsForm } from "@/steps-form/interfaces/steps-form";
+import type { DataSend, IHandleChange, IHandleErrors, IHandleOnblurErrors, IStepsForm } from "@/steps-form/interfaces/steps-form";
 
 export type StepsFormContextProps = {
   stepsFormState: IStepsForm;
@@ -8,6 +8,7 @@ export type StepsFormContextProps = {
   handleErrorsAction: (data: IHandleErrors) => void;
   handleOnblurErrorsAction: (data: IHandleOnblurErrors) => void;
   setLoadingAction: () => void;
+  updatedDataSummaryAction: (data: DataSend) => void;
 };
 
 export const StepsFormContext = createContext<StepsFormContextProps>(

@@ -40,6 +40,7 @@ export interface IStepsForm {
   step: number;
   actionStep: "next" | "back" | "";
   loading: boolean;
+  dataSummary: DataSend | null;
   personalInfo: IPersonalInfo;
   addressInfo: IAddressInfo;
   accountDetails: IAccountDetails;

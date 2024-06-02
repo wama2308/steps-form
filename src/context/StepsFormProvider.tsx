@@ -3,6 +3,7 @@
 import { ReactNode, useReducer } from "react";
 import { StepsFormContext } from "./StepsFormContext";
 import type {
+  DataSend,
   IHandleChange,
   IHandleErrors,
   IHandleOnblurErrors,
@@ -23,6 +24,7 @@ const INITIAL_STATE: IStepsForm = {
   step: 1,
   actionStep: "",
   loading: false,
+  dataSummary: null,
   personalInfo: { ...DEFAULT_PERSONAL_INFO },
   addressInfo: { ...DEFAULT_ADDRESS_INFO },
   accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
@@ -82,7 +84,11 @@ export const StepsFormProvider = ({ children }: Props) => {
   const setLoadingAction = () => {
     dispatch({ type: "updateLoading" });
   };
-  // console.log("stepsFormState ", stepsFormState);
+
+  const updatedDataSummaryAction = (data: DataSend) => {
+    dispatch({ type: "setDataSummary", payload: data });
+  };
+
   return (
     <StepsFormContext.Provider
       value={{
@@ -92,6 +98,7 @@ export const StepsFormProvider = ({ children }: Props) => {
         handleErrorsAction,
         handleOnblurErrorsAction,
         setLoadingAction,
+        updatedDataSummaryAction,
       }}
     >
       {children}

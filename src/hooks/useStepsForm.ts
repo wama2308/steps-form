@@ -1,4 +1,6 @@
-import { useCallback, useContext, useMemo } from "react";
+"use client";
+import { useCallback, useContext } from "react";
+import { useRouter } from 'next/navigation';
 import { StepsFormContext } from "@/context/StepsFormContext";
 import {
   IPreferences,
@@ -14,13 +16,14 @@ import {
   validateSchemaPersonalInfo,
   validateSchemaPreferences,
 } from "@/resources/schemasValidator";
-import { registerProfile } from "@/servers";
+import { registerProfile } from "@/services";
 import {
   registerProfileBusinessUrl,
   registerProfilePersonalUrl,
 } from "@/resources/urls";
 
 export const useStepsForm = () => {
+  const router = useRouter();
   const {
     stepsFormState,
     changeStepAction,
@@ -28,6 +31,7 @@ export const useStepsForm = () => {
     handleErrorsAction,
     handleOnblurErrorsAction,
     setLoadingAction,
+    updatedDataSummaryAction,
   } = useContext(StepsFormContext);
   const {
     step,
@@ -40,6 +44,7 @@ export const useStepsForm = () => {
     preferences,
     validationErrors,
     loading,
+    dataSummary,
   } = stepsFormState;
   const { profile_type } = accountDetails;
   const {
@@ -175,7 +180,12 @@ export const useStepsForm = () => {
         : registerProfileBusinessUrl;
 
     registerProfile(urlSend, dataSend)
-      .then(() => {})
+      .then((res) => {
+        if (res.status === "success") {
+          updatedDataSummaryAction(res.data);
+          router.push('/summary');
+        }
+      })
       .catch((error: Error) => {
         console.error("Error:", error);
       })
@@ -238,7 +248,16 @@ export const useStepsForm = () => {
       }
       return false;
     },
-    [accountDetails, additionalPersonalInfo, addressInfo, businessInfo, personalInfo, preferences.how_heard, preferences.terms_agreed, profile_type]
+    [
+      accountDetails,
+      additionalPersonalInfo,
+      addressInfo,
+      businessInfo,
+      personalInfo,
+      preferences.how_heard,
+      preferences.terms_agreed,
+      profile_type,
+    ]
   );
 
   return {
@@ -262,6 +281,7 @@ export const useStepsForm = () => {
     businessInfoError,
     preferencesError,
     loading,
-    disabledAction
+    disabledAction,
+    dataSummary,
   };
 };

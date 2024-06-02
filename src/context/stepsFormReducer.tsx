@@ -1,4 +1,5 @@
 import type {
+  DataSend,
   IHandleChange,
   IHandleErrors,
   IHandleOnblurErrors,
@@ -10,7 +11,8 @@ type PayloadAction =
   | { type: "handleChange"; payload: IHandleChange }
   | { type: "updateStateError"; payload: IHandleErrors }
   | { type: "updateLoading" }
-  | { type: "updateStateOnblurError"; payload: IHandleOnblurErrors };
+  | { type: "updateStateOnblurError"; payload: IHandleOnblurErrors }
+  | { type: "setDataSummary"; payload: DataSend };
 
 export const stepsFormReducer = (
   state: IStepsForm,
@@ -55,6 +57,11 @@ export const stepsFormReducer = (
       return {
         ...state,
         loading: !state.loading,
+      };
+    case "setDataSummary":
+      return {
+        ...state,
+        dataSummary: action.payload,
       };
 
     default:
