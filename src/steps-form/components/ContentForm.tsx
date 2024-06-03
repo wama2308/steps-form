@@ -17,7 +17,7 @@ const ContentForm = () => {
 
   return (
     <div
-      className="flex flex-col bg-[#f3f4f6] w-full p-4 sm:p-6 border-t border-[#94a3b8] animate-fade-left"
+      className="flex flex-col h-screen sm:h-auto overflow-y-auto sm:overflow-x-hidden bg-[#f3f4f6] w-full p-4 sm:p-6 border-t border-[#94a3b8] animate-fade-left"
       data-cy="content-steps-form-8877"
     >
       {step === 1 && <StepOne />}

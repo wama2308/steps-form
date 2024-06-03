@@ -18,7 +18,7 @@ const FormRegister = () => {
   const router = useRouter();
   const { loading, openModal, dataSummary, updatedOpenModalAction } =
     useStepsForm();
-  const messageModal = dataSummary?.message;
+  const messageModal = dataSummary?.message ?? "¡Error de conexión, por favor intente más tarde!";
 
   const actionModal = () => {
     if (dataSummary?.status === "success") {
@@ -34,7 +34,7 @@ const FormRegister = () => {
         <ModalConfirm message={messageModal!} action={actionModal} />
       )}
       <div
-        className="relative flex flex-col items-center  w-[calc(100%-40px)] sm:max-w-[600px] bg-white border border-gray-200 rounded-lg shadow"
+        className="h-screen sm:h-auto relative flex flex-col items-center w-full sm:max-w-[600px] bg-white border border-gray-200 rounded-lg shadow"
         data-cy="container-steps-form-8877"
       >
         {loading && <Loading />}

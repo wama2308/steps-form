@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { fechaHoy } from "@/utils";
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -52,11 +53,10 @@ const Input = ({
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}
-        autoComplete="new-password"           
+        autoComplete="new-password"
+        max={type === "date" && name === "date_of_birth" ? fechaHoy : ""}
       />
-      {error && (
-        <p className="mt-2 text-xs text-red-500">{errorMessage}</p>
-      )}
+      {error && <p className="mt-2 text-xs text-red-500">{errorMessage}</p>}
     </div>
   );
 };

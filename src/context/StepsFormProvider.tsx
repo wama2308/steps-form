@@ -20,6 +20,14 @@ import {
   DEFAULT_PREFERENCES_ERROR,
 } from "@/resources/contants";
 
+let INITIAL_INFO = {
+  personalInfo: { ...DEFAULT_PERSONAL_INFO },
+  addressInfo: { ...DEFAULT_ADDRESS_INFO },
+  accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
+  additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
+  businessInfo: { ...DEFAULT_BUSINESS_INFO },
+};
+
 /**
  * estado inicial de la aplicacion
  */
@@ -29,18 +37,10 @@ const INITIAL_STATE: IStepsForm = {
   loading: false,
   dataSummary: null,
   openModal: false,
-  personalInfo: { ...DEFAULT_PERSONAL_INFO },
-  addressInfo: { ...DEFAULT_ADDRESS_INFO },
-  accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
-  additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
-  businessInfo: { ...DEFAULT_BUSINESS_INFO },
+  ...INITIAL_INFO,
   preferences: { ...DEFAULT_PREFERENCES },
   validationErrors: {
-    personalInfo: { ...DEFAULT_PERSONAL_INFO },
-    addressInfo: { ...DEFAULT_ADDRESS_INFO },
-    accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
-    additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
-    businessInfo: { ...DEFAULT_BUSINESS_INFO },
+    ...INITIAL_INFO,
     preferences: { ...DEFAULT_PREFERENCES_ERROR },
   },
 };

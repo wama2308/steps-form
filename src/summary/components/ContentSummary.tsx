@@ -16,7 +16,7 @@ const ContentSummary = () => {
 
   return (
     <div
-      className="w-[calc(100%-40px)] sm:max-w-[1000px] mx-auto my-[50px]"
+      className="w-full sm:w-[calc(100%-40px)] h-screen sm:h-auto sm:max-w-[1000px] mx-auto my-0 sm:my-[50px]"
       data-cy="content-summary-4455"
     >
       {dataSummary ? (

@@ -176,3 +176,12 @@ const usernameRegex = /.{3,}/;
  */
 const passwordRegex =
   /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s])[A-Za-z\d\S]{8,}$/;
+
+  /**
+   * Variables para obtener la fecha actual
+   */
+  const hoy = new Date();
+  const year = hoy.getFullYear();
+  const month = String(hoy.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
+  const day = String(hoy.getDate()).padStart(2, '0');
+  export const fechaHoy = `${year}-${month}-${day}`;
