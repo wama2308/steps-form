@@ -27,7 +27,10 @@ const FormRegister = () => {
       {openModal && (
         <ModalConfirm message={messageModal!} action={actionModal} />
       )}
-      <div className="relative flex flex-col items-center  w-[calc(100%-40px)] sm:max-w-[600px] bg-white border border-gray-200 rounded-lg shadow">
+      <div
+        className="relative flex flex-col items-center  w-[calc(100%-40px)] sm:max-w-[600px] bg-white border border-gray-200 rounded-lg shadow"
+        data-cy="container-steps-form-8877"
+      >
         {loading && <Loading />}
         <HeaderFormRegister />
         <ContentForm />

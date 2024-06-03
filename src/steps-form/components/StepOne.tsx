@@ -29,6 +29,7 @@ const StepOne = () => {
           })
         }
         onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        data-cy="input-fullname-steps-form-4455"
       />
       <Input
         label="Email"
@@ -46,6 +47,7 @@ const StepOne = () => {
           })
         }
         onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        data-cy="input-email-steps-form-4455"
       />
       <Input
         label="Teléfono"
@@ -63,6 +65,7 @@ const StepOne = () => {
           })
         }
         onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
+        data-cy="input-phone-steps-form-4455"
       />
     </ContentStepsForm>
   );

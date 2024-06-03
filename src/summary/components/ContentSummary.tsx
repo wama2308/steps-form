@@ -10,7 +10,10 @@ const ContentSummary = () => {
   const { dataSummary } = useStepsForm();
 
   return (
-    <div className="w-[calc(100%-40px)] sm:max-w-[1000px] mx-auto my-[50px]">
+    <div
+      className="w-[calc(100%-40px)] sm:max-w-[1000px] mx-auto my-[50px]"
+      data-cy="content-summary-4455"
+    >
       {dataSummary ? (
         <div className="border border-gray-200 rounded-md mx-auto p-5 sm:p-10">
           <h3 className="mb-3 text-base font-semibold leading-7 text-gray-900">

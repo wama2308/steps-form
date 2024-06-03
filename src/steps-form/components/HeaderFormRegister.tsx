@@ -38,7 +38,7 @@ const HeaderFormRegister = () => {
   const steps = [1, 2, 3, 4, 5];
 
   return (
-    <div className="flex flex-col w-full items-center gap-7 p-4 sm:p-6 text-blue-800">
+    <div className="flex flex-col w-full items-center gap-7 p-4 sm:p-6 text-blue-800" data-cy="header-steps-form-8877">
       <h1 className="text-2xl text-center">Formulario de registro</h1>
       <ol className="flex items-center w-full">
         {steps.map((step, index) => (

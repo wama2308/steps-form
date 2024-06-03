@@ -6,7 +6,10 @@ import { useStepsForm } from "@/hooks/useStepsForm";
 const FooterForm = () => {
   const { changeStepAction, step, sendStep, disabledAction } = useStepsForm();
   return (
-    <div className="flex flex-col gap-4 justify-start items-center px-4 py-4 sm:justify-end sm:flex-row bg-[#f3f4f6] w-full border-t border-[#94a3b8]">
+    <div
+      className="flex flex-col gap-4 justify-start items-center px-4 py-4 sm:justify-end sm:flex-row bg-[#f3f4f6] w-full border-t border-[#94a3b8]"
+      data-cy="footer-steps-form-8877"
+    >
       {step > 1 && (
         <button
           type="button"
@@ -26,6 +29,7 @@ const FooterForm = () => {
         )}
         onClick={() => sendStep(step)}
         disabled={disabledAction(step)}
+        data-cy="button-next-action-4455"
       >
         Siguiente
       </button>

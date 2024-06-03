@@ -79,7 +79,7 @@ const StepThree = () => {
             <Radio
               key={item}
               name="profile_type"
-              id={`profile_type_${item.trim()}`}
+              id={`profile_type_${item.replace(/\s/g, "")}`}
               value={item}
               valueChecked={accountDetails.profile_type}
               label={item}

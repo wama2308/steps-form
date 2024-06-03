@@ -34,7 +34,7 @@ const StepFive = () => {
             <Radio
               key={item}
               name="how_heard"
-              id={`how_heard_${item.trim()}`}
+              id={`how_heard_${item.replace(/\s/g, "")}`}
               value={item}
               valueChecked={preferences.how_heard}
               label={item}
