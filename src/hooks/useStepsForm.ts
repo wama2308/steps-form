@@ -1,6 +1,4 @@
-"use client";
 import { useCallback, useContext } from "react";
-import { useRouter } from 'next/navigation';
 import { StepsFormContext } from "@/context/StepsFormContext";
 import {
   IPreferences,
@@ -23,7 +21,6 @@ import {
 } from "@/resources/urls";
 
 export const useStepsForm = () => {
-  const router = useRouter();
   const {
     stepsFormState,
     changeStepAction,
@@ -32,6 +29,7 @@ export const useStepsForm = () => {
     handleOnblurErrorsAction,
     setLoadingAction,
     updatedDataSummaryAction,
+    updatedOpenModalAction,
   } = useContext(StepsFormContext);
   const {
     step,
@@ -45,6 +43,7 @@ export const useStepsForm = () => {
     validationErrors,
     loading,
     dataSummary,
+    openModal,
   } = stepsFormState;
   const { profile_type } = accountDetails;
   const {
@@ -182,8 +181,7 @@ export const useStepsForm = () => {
     registerProfile(urlSend, dataSend)
       .then((res) => {
         if (res.status === "success") {
-          updatedDataSummaryAction(res.data);
-          router.push('/summary');
+          updatedDataSummaryAction(res);
         }
       })
       .catch((error: Error) => {
@@ -191,6 +189,7 @@ export const useStepsForm = () => {
       })
       .finally(() => {
         setLoadingAction();
+        updatedOpenModalAction({ open: true });
       });
   };
 
@@ -283,5 +282,7 @@ export const useStepsForm = () => {
     loading,
     disabledAction,
     dataSummary,
+    openModal,
+    updatedOpenModalAction,
   };
 };

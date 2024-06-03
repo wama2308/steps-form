@@ -40,7 +40,7 @@ const StepThree = () => {
         error={Boolean(accountDetailsError.password)}
         errorMessage={accountDetailsError.password ?? ""}
         name="password"
-        type="text"
+        type="password"
         onChange={(e) =>
           handleChangeAction({
             key: "accountDetails",
@@ -56,7 +56,7 @@ const StepThree = () => {
         error={Boolean(accountDetailsError.confirm_password)}
         errorMessage={accountDetailsError.confirm_password ?? ""}
         name="confirm_password"
-        type="text"
+        type="password"
         onChange={(e) =>
           handleChangeAction({
             key: "accountDetails",
