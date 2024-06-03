@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Ejecución de pruebas con Cypress
+
+Este proyecto incluye pruebas automatizadas utilizando Cypress. Sigue estos pasos para ejecutar las pruebas:
+
+1. Asegúrate de que el servidor de desarrollo esté en funcionamiento ejecutando el siguiente comando:
+
+```bash
+npm run dev
+# o
+yarn dev
+# o
+pnpm dev
+# o
+bun dev
+```
+
+2. Abre una nueva terminal y ejecuta el siguiente comando para abrir la interfaz de usuario de Cypress:
+
+```bash
+npm run cypress:open
+# o
+yarn cypress:open
+```

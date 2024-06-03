@@ -1,11 +1,5 @@
-"use client";
-import { useStepsForm } from "@/hooks/useStepsForm";
+import ContentSummary from "@/summary/components/ContentSummary";
 
 export default function SummaryPage() {
-  const { data } = useStepsForm();
-  return (
-    <div>
-      <h1>Hello Page {data.step}</h1>
-    </div>
-  );
+  return <ContentSummary />;
 }

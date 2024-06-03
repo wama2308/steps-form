@@ -3,53 +3,45 @@
 import { ReactNode, useReducer } from "react";
 import { StepsFormContext } from "./StepsFormContext";
 import type {
+  Response,
   IHandleChange,
   IHandleErrors,
+  IHandleOnblurErrors,
   IStepsForm,
 } from "@/steps-form/interfaces/steps-form";
 import { stepsFormReducer } from "./stepsFormReducer";
+import {
+  DEFAULT_PERSONAL_INFO,
+  DEFAULT_ADDRESS_INFO,
+  DEFAULT_ACCOUNT_DETAILS,
+  DEFAULT_ADDITIONAL_PERSONAL_INFO,
+  DEFAULT_BUSINESS_INFO,
+  DEFAULT_PREFERENCES,
+  DEFAULT_PREFERENCES_ERROR,
+} from "@/resources/contants";
 
+/**
+ * estado inicial de la aplicacion
+ */
 const INITIAL_STATE: IStepsForm = {
   step: 1,
   actionStep: "",
-  personalInfo: {
-    full_name: "",
-    email: "",
-    phone_number: "",
-  },
-  addressInfo: {
-    street_address: "",
-    city: "",
-    postal_code: "",
-    country: "",
-  },
-  accountDetails: {
-    username: "",
-    password: "",
-    confirm_password: "",
-    profile_type: "",
-  },
-  additionalPersonalInfo: {
-    date_of_birth: "",
-    gender: "",
-  },
-  businessInfo: {
-    company_name: "",
-    company_size: "",
-    role_in_company: "",
-  },
-  preferences: {
-    notifications: false,
-    how_heard: "",
-    terms_agreed: false,
-  },
+  loading: false,
+  dataSummary: null,
+  openModal: false,
+  personalInfo: { ...DEFAULT_PERSONAL_INFO },
+  addressInfo: { ...DEFAULT_ADDRESS_INFO },
+  accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
+  additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
+  businessInfo: { ...DEFAULT_BUSINESS_INFO },
+  preferences: { ...DEFAULT_PREFERENCES },
   validationErrors: {
-    personalInfo: {},
-    addressInfo: {},
-    accountDetails: {},
-    additionalPersonalInfo: {},
-    businessInfo: {},
-    preferences: {},
+    personalInfo: { ...DEFAULT_PERSONAL_INFO },
+    addressInfo: { ...DEFAULT_ADDRESS_INFO },
+    accountDetails: { ...DEFAULT_ACCOUNT_DETAILS },
+    additionalPersonalInfo: { ...DEFAULT_ADDITIONAL_PERSONAL_INFO },
+    businessInfo: { ...DEFAULT_BUSINESS_INFO },
+    preferences: { ...DEFAULT_PREFERENCES_ERROR },
   },
 };
 
@@ -63,18 +55,70 @@ export const StepsFormProvider = ({ children }: Props) => {
     INITIAL_STATE
   );
 
+  /**
+   * funcion para cambiar el valor de los pasos del formulario
+   */
   const changeStepAction = (step: number) => {
     dispatch({ type: "changeStep", payload: { step } });
   };
 
+  /**
+   * funcion para cambiar el valor de los campos del formulario, dependiendo del tipo de campo tambien se actualiza el valor
+   * del campo que esta dentro del objeto validationErrors
+   */
   const handleChangeAction = (data: IHandleChange) => {
     dispatch({ type: "handleChange", payload: data });
+    if (
+      data.value &&
+      data.type &&
+      ["select", "radio", "checkbox", "date"].includes(data.type)
+    ) {
+      dispatch({
+        type: "updateStateOnblurError",
+        payload: {
+          valueErrorOnblur: "",
+          fieldErrorOnblur: data.key,
+          keyErrorOnblur: data.field,
+        },
+      });
+    }
   };
 
+  /**
+   * Funcion para actualizar los errores en el form
+   */
   const handleErrorsAction = (data: IHandleErrors) => {
     dispatch({ type: "updateStateError", payload: data });
   };
-  console.log("stepsFormState ", stepsFormState)
+
+  /**
+   * Funcion para actualizar los errores en el form con el evento onblur
+   */
+  const handleOnblurErrorsAction = (data: IHandleOnblurErrors) => {
+    dispatch({ type: "updateStateOnblurError", payload: data });
+  };
+
+  /**
+   * Funcion para actualizar el estado del campo loading
+   */
+  const setLoadingAction = () => {
+    dispatch({ type: "updateLoading" });
+  };
+
+  /**
+   * Funcion para actualizar la data una vez enviado el formulario
+   */
+  const updatedDataSummaryAction = (data: Response) => {
+    dispatch({ type: "setDataSummary", payload: data });
+  };
+
+  /**
+   * Funcion para actualizar el valor open para mostrar u ocultar el modal de confirmacion
+   */
+  const updatedOpenModalAction = (data: { open: boolean }) => {
+    dispatch({ type: "setOpenModal", payload: data });
+  };
+
   return (
     <StepsFormContext.Provider
       value={{
@@ -82,6 +126,10 @@ export const StepsFormProvider = ({ children }: Props) => {
         changeStepAction,
         handleChangeAction,
         handleErrorsAction,
+        handleOnblurErrorsAction,
+        setLoadingAction,
+        updatedDataSummaryAction,
+        updatedOpenModalAction,
       }}
     >
       {children}

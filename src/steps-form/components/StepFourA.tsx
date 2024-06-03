@@ -4,15 +4,26 @@ import Select from "@/components/form/Select";
 import { GENDER } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el cuarto paso del formulario para perfiles personales.
+ * Este paso permite al usuario ingresar información adicional, como fecha de nacimiento y género.
+ * @returns JSX.Element
+ */
 const StepFourA = () => {
-  const { handleChangeAction, additionalPersonalInfo } = useStepsForm();
+  const {
+    handleChangeAction,
+    additionalPersonalInfo,
+    additionalPersonalInfoError,
+    sendStep,
+    step,
+  } = useStepsForm();
   return (
     <div>
       <Input
         label="Fecha de nacimiento"
-        error={false}
         value={additionalPersonalInfo?.date_of_birth}
-        errorMessage=""
+        error={Boolean(additionalPersonalInfoError.date_of_birth)}
+        errorMessage={additionalPersonalInfoError.date_of_birth ?? ""}
         name="date_of_birth"
         type="date"
         onChange={(e) =>
@@ -20,25 +31,27 @@ const StepFourA = () => {
             key: "additionalPersonalInfo",
             value: e.target.value,
             field: e.target.name,
+            type: "date",
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
       <Select
         label="Género"
         name="gender"
         value={additionalPersonalInfo?.gender}
-        error={false}
-        errorMessage=""
+        error={Boolean(additionalPersonalInfoError.gender)}
+        errorMessage={additionalPersonalInfoError.gender ?? ""}
         options={GENDER}
         onChange={(e) =>
           handleChangeAction({
             key: "additionalPersonalInfo",
             value: e.target.value,
             field: e.target.name,
+            type: "select",
           })
         }
-        // onBlur={handleInputBlur}
+        onBlur={(e) => sendStep(step, { [e.target.name]: e.target.value })}
       />
     </div>
   );

@@ -17,6 +17,11 @@ interface Props
   options: IOptions[];
 }
 
+/**
+ * Componente de select personalizado.
+ * @param props Propiedades del select.
+ * @returns JSX.Element
+ */
 const Select = ({
   value,
   label,
@@ -58,9 +63,7 @@ const Select = ({
           </option>
         ))}
       </select>
-      {error && (
-        <p className="mt-2 text-xs text-red-500">Username already taken!</p>
-      )}
+      {error && <p className="mt-2 text-xs text-red-500">{errorMessage}</p>}
     </div>
   );
 };
