@@ -6,6 +6,11 @@ import { formattedKeys, formatValue } from "@/utils";
 import { DataSend } from "@/steps-form/interfaces/steps-form";
 import AlertNoData from "@/components/ui/AlertNoData";
 
+/**
+ * Componente que muestra un resumen de los datos recopilados en un formulario paso a paso.
+ * Si no hay datos disponibles, muestra una alerta de no datos.
+ * @returns JSX.Element
+ */
 const ContentSummary = () => {
   const { dataSummary } = useStepsForm();
 

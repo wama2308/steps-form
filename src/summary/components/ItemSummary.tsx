@@ -5,6 +5,12 @@ interface Props {
   value: string;
 }
 
+/**
+ * Componente que muestra un ítem del resumen.
+ * @param label Etiqueta del ítem del resumen.
+ * @param value Valor del ítem del resumen.
+ * @returns JSX.Element
+ */
 const ItemSummary = ({ label, value }: Props) => {
   return (
     <div className="border-b border-gray-100 py-[10px]">

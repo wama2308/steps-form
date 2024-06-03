@@ -5,6 +5,12 @@ interface Props {
   action: () => void;
 }
 
+/**
+ * Componente de modal de confirmación.
+ * @param message Mensaje que se mostrará en el modal.
+ * @param action Función que se ejecutará al confirmar la acción.
+ * @returns JSX.Element
+ */
 const ModalConfirm = ({ message, action }: Props) => {
   return (
     <div

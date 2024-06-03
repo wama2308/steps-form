@@ -1,5 +1,9 @@
 import { DataSend, Response } from "./steps-form/interfaces/steps-form";
 
+/**
+ * Esta función realiza una solicitud de registro de perfil a una URL especificada con los datos proporcionados.
+ * Retorna una promesa que se resolverá en un objeto de respuesta
+ */
 export const registerProfile = async (
   url: string,
   data: DataSend

@@ -11,6 +11,11 @@ interface Props
   valueChecked?: string;
 }
 
+/**
+ * Componente de radio personalizado.
+ * @param props Propiedades del radio.
+ * @returns JSX.Element
+ */
 const Radio = ({
   value,
   valueChecked,

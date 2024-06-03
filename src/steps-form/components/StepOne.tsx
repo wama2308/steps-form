@@ -3,6 +3,11 @@ import React from "react";
 import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el primer paso del formulario.
+ * Este paso permite al usuario ingresar su nombre completo, email y teléfono.
+ * @returns JSX.Element
+ */
 const StepOne = () => {
   const {
     handleChangeAction,

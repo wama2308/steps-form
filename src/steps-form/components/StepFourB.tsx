@@ -4,6 +4,11 @@ import Select from "@/components/form/Select";
 import { COMPANY_SIZE } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el cuarto paso del formulario para perfiles empresariales.
+ * Este paso permite al usuario ingresar información sobre la empresa, como nombre, tamaño y rol.
+ * @returns JSX.Element
+ */
 const StepFourB = () => {
   const {
     handleChangeAction,

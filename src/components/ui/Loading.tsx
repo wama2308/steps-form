@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Componente de carga que muestra un indicador de carga mientras se espera la respuesta de una solicitud.
+ * @returns JSX.Element
+ */
 const Loading = () => {
   return (
     <div className="absolute flex items-center justify-center w-full h-full bg-white bg-opacity-60 z-10">

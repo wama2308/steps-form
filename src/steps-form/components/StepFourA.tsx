@@ -4,6 +4,11 @@ import Select from "@/components/form/Select";
 import { GENDER } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el cuarto paso del formulario para perfiles personales.
+ * Este paso permite al usuario ingresar información adicional, como fecha de nacimiento y género.
+ * @returns JSX.Element
+ */
 const StepFourA = () => {
   const {
     handleChangeAction,

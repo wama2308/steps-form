@@ -11,6 +11,11 @@ interface Props
   errorMessage: string;
 }
 
+/**
+ * Componente de input personalizado.
+ * @param props Propiedades del input.
+ * @returns JSX.Element
+ */
 const Input = ({
   value,
   label,

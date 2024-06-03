@@ -12,6 +12,11 @@ interface Props
   valueChecked?: string | boolean;
 }
 
+/**
+ * Componente de checkbox personalizado.
+ * @param props Propiedades del checkbox.
+ * @returns JSX.Element
+ */
 const Checkbox = ({
   value,
   valueChecked,

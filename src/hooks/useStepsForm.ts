@@ -55,6 +55,10 @@ export const useStepsForm = () => {
     preferences: preferencesError,
   } = validationErrors;
 
+  /**
+   * Función maneja el envío de datos para cada paso del formulario y realiza validaciones según el paso actual y los datos proporcionados.
+   * Sirve para validar tanto al momento de enviar un form completo como en el evento onblur de los inputs text.
+   */
   const sendStep = (step: number, data?: Record<string, string>) => {
     let errors: TDataSteps;
 
@@ -162,6 +166,9 @@ export const useStepsForm = () => {
     }
   };
 
+  /**
+   * Esta función se encarga de enviar los datos del formulario al servidor y manejar la respuesta
+   */
   const sendData = () => {
     setLoadingAction();
     const dataSend = {
@@ -193,6 +200,9 @@ export const useStepsForm = () => {
       });
   };
 
+  /**
+   * Función que extrae la primera clave y valor de un objeto y los devuelve en un nuevo objeto
+   */
   const getKeyValueDataObject = (
     obj: Record<string, string>
   ): Record<string, string> => {
@@ -205,6 +215,10 @@ export const useStepsForm = () => {
     };
   };
 
+  /**
+   * Gancho de useCallback que devuelve un booleano indicando si un paso particular del formulario debería estar deshabilitado basado
+   * en si hay errores de validación en ese paso, recibe como parametro el número del paso del formulario
+   */
   const disabledAction = useCallback(
     (step: number) => {
       if (step === 1) {

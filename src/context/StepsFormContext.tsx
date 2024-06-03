@@ -18,6 +18,9 @@ export type StepsFormContextProps = {
   updatedOpenModalAction: (data: { open: boolean }) => void;
 };
 
+/**
+ * Contexto de React que proporciona acceso a las funciones y el estado relacionados con el formulario.
+ */
 export const StepsFormContext = createContext<StepsFormContextProps>(
   {} as StepsFormContextProps
 );

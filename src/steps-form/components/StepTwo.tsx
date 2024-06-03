@@ -5,6 +5,11 @@ import ContentStepsForm from "./ContentStepsForm";
 import { COUNTRIES } from "@/resources/contants";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el segundo paso del formulario.
+ * Este paso permite al usuario ingresar detalles de dirección, como la dirección, ciudad, código postal y país.
+ * @returns JSX.Element
+ */
 const StepTwo = () => {
   const { handleChangeAction, addressInfo, addressInfoError, sendStep, step } =
     useStepsForm();

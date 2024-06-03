@@ -6,6 +6,12 @@ import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
 import { DATA_RADIOS_STEP_THREE } from "@/resources/contants";
 
+/**
+ * Componente que representa el tercer paso del formulario.
+ * Este paso permite al usuario ingresar detalles de la cuenta, como nombre de usuario y contraseña.
+ * También permite al usuario seleccionar un perfil de usuario.
+ * @returns JSX.Element
+ */
 const StepThree = () => {
   const {
     handleChangeAction,

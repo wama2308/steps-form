@@ -1,5 +1,9 @@
 import React from "react";
 
+/**
+ * Componente de alerta para cuando no hay datos de resumen para mostrar.
+ * @returns JSX.Element
+ */
 const AlertNoData = () => {
   return (
     <div

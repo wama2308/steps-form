@@ -3,6 +3,11 @@ import React from "react";
 import clsx from "clsx";
 import { useStepsForm } from "@/hooks/useStepsForm";
 
+/**
+ * Componente que representa el pie de página del formulario paso a paso.
+ * Permite navegar entre los diferentes pasos del formulario y enviar el formulario.
+ * @returns JSX.Element
+ */
 const FooterForm = () => {
   const { changeStepAction, step, sendStep, disabledAction } = useStepsForm();
   return (

@@ -20,6 +20,9 @@ import {
   DEFAULT_PREFERENCES_ERROR,
 } from "@/resources/contants";
 
+/**
+ * estado inicial de la aplicacion
+ */
 const INITIAL_STATE: IStepsForm = {
   step: 1,
   actionStep: "",
@@ -52,10 +55,17 @@ export const StepsFormProvider = ({ children }: Props) => {
     INITIAL_STATE
   );
 
+  /**
+   * funcion para cambiar el valor de los pasos del formulario
+   */
   const changeStepAction = (step: number) => {
     dispatch({ type: "changeStep", payload: { step } });
   };
 
+  /**
+   * funcion para cambiar el valor de los campos del formulario, dependiendo del tipo de campo tambien se actualiza el valor
+   * del campo que esta dentro del objeto validationErrors
+   */
   const handleChangeAction = (data: IHandleChange) => {
     dispatch({ type: "handleChange", payload: data });
     if (
@@ -74,22 +84,37 @@ export const StepsFormProvider = ({ children }: Props) => {
     }
   };
 
+  /**
+   * Funcion para actualizar los errores en el form
+   */
   const handleErrorsAction = (data: IHandleErrors) => {
     dispatch({ type: "updateStateError", payload: data });
   };
 
+  /**
+   * Funcion para actualizar los errores en el form con el evento onblur
+   */
   const handleOnblurErrorsAction = (data: IHandleOnblurErrors) => {
     dispatch({ type: "updateStateOnblurError", payload: data });
   };
 
+  /**
+   * Funcion para actualizar el estado del campo loading
+   */
   const setLoadingAction = () => {
     dispatch({ type: "updateLoading" });
   };
 
+  /**
+   * Funcion para actualizar la data una vez enviado el formulario
+   */
   const updatedDataSummaryAction = (data: Response) => {
     dispatch({ type: "setDataSummary", payload: data });
   };
 
+  /**
+   * Funcion para actualizar el valor open para mostrar u ocultar el modal de confirmacion
+   */
   const updatedOpenModalAction = (data: { open: boolean }) => {
     dispatch({ type: "setOpenModal", payload: data });
   };

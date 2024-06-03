@@ -5,6 +5,11 @@ import ContentStepsForm from "./ContentStepsForm";
 import { useStepsForm } from "@/hooks/useStepsForm";
 import { DATA_RADIOS_STEP_FIVE } from "@/resources/contants";
 
+/**
+ * Quinto paso del formulario.
+ * Este paso permite al usuario seleccionar sus preferencias y aceptar los términos y condiciones.
+ * @returns JSX.Element
+ */
 const StepFive = () => {
   const { handleChangeAction, preferences, preferencesError } = useStepsForm();
 

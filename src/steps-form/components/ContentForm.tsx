@@ -7,6 +7,11 @@ import StepThree from "./StepThree";
 import StepFour from "./StepFour";
 import StepFive from "./StepFive";
 
+/**
+ * Componente que representa el contenido del formulario paso a paso.
+ * Renderiza el componente correspondiente al paso actual del formulario.
+ * @returns JSX.Element
+ */
 const ContentForm = () => {
   const { step } = useStepsForm();
 

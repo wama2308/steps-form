@@ -9,6 +9,14 @@ interface PropsStep {
   isLast: boolean;
 }
 
+/**
+ * Componente que representa un paso en el encabezado del formulario de registro.
+ * Muestra el número del paso y su estado.
+ * @param step Número del paso.
+ * @param stepSelected Número del paso seleccionado.
+ * @param isLast Indica si es el último paso.
+ * @returns JSX.Element
+ */
 const Step = ({ step, stepSelected, isLast }: PropsStep) => {
   const stepClasses = clsx(
     "flex items-center justify-center w-10 h-10 rounded-full lg:h-12 lg:w-12 shrink-0",
@@ -33,6 +41,11 @@ const Step = ({ step, stepSelected, isLast }: PropsStep) => {
   );
 };
 
+/**
+ * Componente que representa el encabezado del formulario de registro.
+ * Muestra el título del formulario y los pasos completados.
+ * @returns JSX.Element
+ */
 const HeaderFormRegister = () => {
   const { step: activeStep } = useStepsForm();
   const steps = [1, 2, 3, 4, 5];

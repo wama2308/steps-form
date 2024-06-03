@@ -8,6 +8,12 @@ import Loading from "@/components/ui/Loading";
 import { useStepsForm } from "@/hooks/useStepsForm";
 import ModalConfirm from "@/components/ui/ModalConfirm";
 
+/**
+ * Componente principal que representa el formulario de registro.
+ * Este componente gestiona el estado del formulario, incluyendo el manejo de la carga, la navegación entre pasos,
+ * la visualización del contenido del formulario, y la presentación de un modal de confirmación cuando se envía el formulario.
+ * @returns JSX.Element
+ */
 const FormRegister = () => {
   const router = useRouter();
   const { loading, openModal, dataSummary, updatedOpenModalAction } =

@@ -8,6 +8,7 @@ import type {
   ValidationRules,
 } from "@/steps-form/interfaces/steps-form";
 
+// Esquema de validación para la información personal
 export const validateSchemaPersonalInfo: Record<
   keyof IPersonalInfo,
   ValidationRules
@@ -26,6 +27,7 @@ export const validateSchemaPersonalInfo: Record<
   },
 };
 
+// Esquema de validación para la información de dirección
 export const validateSchemaAddressInfo: Record<
   keyof IAddressInfo,
   ValidationRules
@@ -41,6 +43,7 @@ export const validateSchemaAddressInfo: Record<
   },
 };
 
+// Esquema de validación para los detalles de la cuenta
 export const validateSchemaAccountDetails: Record<
   keyof IAccountDetails,
   ValidationRules
@@ -61,6 +64,7 @@ export const validateSchemaAccountDetails: Record<
   profile_type: { required: "El perfil de usuario es requerido" },
 };
 
+// Esquema de validación para la información adicional del perfil personal
 export const validateSchemaAdditionalPersonalInfo: Record<
   keyof IAdditionalPersonalInfo,
   ValidationRules
@@ -69,6 +73,7 @@ export const validateSchemaAdditionalPersonalInfo: Record<
   gender: { required: "El género es requerido" },
 };
 
+// Esquema de validación para la información del negocio
 export const validateSchemaBussinesInfo: Record<
   keyof IBusinessInfo,
   ValidationRules
@@ -78,6 +83,7 @@ export const validateSchemaBussinesInfo: Record<
   role_in_company: { required: "El rol en la empresa es requerido" },
 };
 
+// Esquema de validación para las preferencias del usuario
 export const validateSchemaPreferences: Record<
   keyof Omit<IPreferences, "notifications">,
   ValidationRules

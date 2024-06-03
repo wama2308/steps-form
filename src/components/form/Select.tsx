@@ -17,6 +17,11 @@ interface Props
   options: IOptions[];
 }
 
+/**
+ * Componente de select personalizado.
+ * @param props Propiedades del select.
+ * @returns JSX.Element
+ */
 const Select = ({
   value,
   label,

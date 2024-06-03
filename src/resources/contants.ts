@@ -1,3 +1,4 @@
+// Variable para llenar el select de pais
 export const COUNTRIES: { label: string; value: string }[] = [
   { label: "Afganistán", value: "Afganistán" },
   { label: "Albania", value: "Albania" },
@@ -199,6 +200,7 @@ export const COUNTRIES: { label: string; value: string }[] = [
   { label: "Zimbabue", value: "Zimbabue" },
 ];
 
+// Variable para llenar el select de genero
 export const GENDER: { label: string; value: string }[] = [
   {
     label: "Male",
@@ -214,6 +216,7 @@ export const GENDER: { label: string; value: string }[] = [
   },
 ];
 
+// Variable para llenar el select de tamaño de empresa
 export const COMPANY_SIZE: { label: string; value: string }[] = [
   {
     label: "1-10",
@@ -237,8 +240,10 @@ export const COMPANY_SIZE: { label: string; value: string }[] = [
   },
 ];
 
+// Variable para renderizar los radio buttons en el paso tres (detalles de la cuenta)
 export const DATA_RADIOS_STEP_THREE: string[] = ["Personal", "Business"];
 
+// Variable para renderizar los radio buttons en el paso cinco (preferencias)
 export const DATA_RADIOS_STEP_FIVE: string[] = [
   "Online Ads",
   "Friend Referral",
@@ -246,12 +251,14 @@ export const DATA_RADIOS_STEP_FIVE: string[] = [
   "Other",
 ];
 
+// Valor inicial en el estado
 export const DEFAULT_PERSONAL_INFO = {
   full_name: "",
   email: "",
   phone_number: "",
 };
 
+// Valor inicial en el estado
 export const DEFAULT_ADDRESS_INFO = {
   street_address: "",
   city: "",
@@ -259,6 +266,7 @@ export const DEFAULT_ADDRESS_INFO = {
   country: "",
 };
 
+// Valor inicial en el estado
 export const DEFAULT_ACCOUNT_DETAILS = {
   username: "",
   password: "",
@@ -266,29 +274,35 @@ export const DEFAULT_ACCOUNT_DETAILS = {
   profile_type: "",
 };
 
+// Valor inicial en el estado
 export const DEFAULT_ADDITIONAL_PERSONAL_INFO = {
   date_of_birth: "",
   gender: "",
 };
 
+// Valor inicial en el estado
 export const DEFAULT_BUSINESS_INFO = {
   company_name: "",
   company_size: "",
   role_in_company: "",
 };
 
+// Valor inicial en el estado
 export const DEFAULT_PREFERENCES = {
   notifications: false,
   how_heard: "",
   terms_agreed: false,
 };
 
+// Valor inicial en el estado en la variable de errores en la parte de preferencias
 export const DEFAULT_PREFERENCES_ERROR = {
   notifications: "",
   how_heard: "",
   terms_agreed: "",
 };
 
+// La URL base de la API, obtenida del entorno de ejecución.
 const API_BASE_URL = process.env.API_BASE_URL;
 
+// La URL completa para la versión 3 de la API, que es la concatenación de API_BASE_URL y /v3.
 export const API_V3 = `${API_BASE_URL}/v3`;
