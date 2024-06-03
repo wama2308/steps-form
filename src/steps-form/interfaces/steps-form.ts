@@ -158,4 +158,5 @@ export interface DataSend {
   notifications: boolean;
   how_heard: string;
   terms_agreed: boolean;
+  [key: string]: any;
 }

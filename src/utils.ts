@@ -106,6 +106,33 @@ export const hasErrors = (errors: Record<string, string>): boolean => {
   return Object.values(errors).some((value) => value.trim() !== "");
 };
 
+export const formattedKeys: Record<string, string> = {
+  full_name: "Nombre Completo",
+  email: "Email",
+  phone_number: "Teléfono",
+  street_address: "Dirección",
+  city: "Ciudad",
+  postal_code: "Código Postal",
+  country: "País",
+  username: "Nombre de Usuario",
+  profile_type: "Tipo de Perfil",
+  notifications: "¿Quieres recibir notificaciones vía email?",
+  how_heard: "¿Cómo se enteró de nuestro servicio?",
+  terms_agreed: "Términos y condiciones",
+  date_of_birth: "Fecha de nacimiento",
+  gender: "Género",
+  company_name: "Nombre de la empresa",
+  company_size: "Tamaño de la empresa",
+  role_in_company: "Rol en la empresa",
+};
+
+export const formatValue = (value: string | boolean) => {
+  if (typeof value === "boolean") {
+    return value ? "Sí" : "No";
+  }
+  return value;
+};
+
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const phoneRegex = /^\+?[0-9\s\-\(\)]{9,15}$/;
 const postalCodeRegex = /^[A-Za-z0-9\s\-]{3,10}$/;
